@@ -1,3 +1,4 @@
+#Try with ./console in the 
 class ArrayList
   attr_reader :size
 
@@ -15,14 +16,42 @@ class ArrayList
   # append the argument to the end of this ArrayList and increase the size by
   # 1. The return value must be self.
 
+  def << (value)
+    #expand_array if @size >= @array.size
+    @array[@size] = value
+    #@array = @array + [num]
+    #puts @array
+    #@array[]@size
+    #@array.push(num)
+    @size+=1
+    self
+  end
+
   # Define a method ">>" which takes a single argument. This method should
   # prepend the argument to the beginning of this ArrayList and increase the
   # size by 1. The return value must be self.
+
+  def >> (value)
+    #expand_array if @size >= @array.size
+    #while @size < 10
+      @array[0] = @array[1]
+    #end
+    @array[0] = value
+    @size+=1
+    self
+  end
 
   # Define a "delete" method which takes a single index argument. This method
   # should delete the value at the provided index and return it. The size should
   # be 1 less than it was before this method was called. The index must be
   # within the bounds of the ArrayList, or an IndexError should be raised.
+
+  def delete(index)
+    #if @size >= index
+      @array.delete_at(index)
+      @size-=1
+    #end
+  end
 
   # Define a method "[]=" which takes 2 arguments. This method should set the
   # value at the index defined in the first argument such that array_list[index]
@@ -39,6 +68,21 @@ class ArrayList
   # The size after this method is called depends on the index provided. An
   # existing index would not affect the size, but an index greater than the last
   # index will add the difference to the size.
+
+  def []=(index, value)
+    if index < 0
+      raise "IndexError"
+    end
+    while index < 10
+      @array[index] = value
+      @size+=1
+    end
+    if index == 10
+      @array = FixedArray.new(20)
+      #FixedArray.new(20) { i @array|i| }
+    end
+  end
+
 
   private
 
